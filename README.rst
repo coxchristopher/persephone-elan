@@ -1,4 +1,4 @@
-Persephone-ELAN v0.1.0
+Persephone-ELAN v0.1.1
 ======================
 
 Persephone-ELAN integrates the automatic phoneme recognition methods offered by
@@ -32,12 +32,12 @@ Python packages:
 Once all of these tools and packages have been installed, Persephone-ELAN can
 be made available to ELAN as follows:
 
-#. Save a copy of all of the files in the `latest release <https://github.com/coxchristopher/persephone-elan/releases/tag/v0.1.0>`_
-   of this repository in a single directory (e.g., ``Persephone-ELAN``)
+#. Save a copy of all of the files in the `latest release <https://github.com/coxchristopher/persephone-elan/releases/tag/v0.1.1>`_
+   of this repository in a single directory (e.g., ``Persephone-ELAN``).
 #. Edit the file ``persephone-elan.sh`` to specify (a) the absolute path of
    the Python 3 binary that Persephone-ELAN should use, (b) the directory
    in which ffmpeg is located, and (c) a Unicode-friendly language and
-   locale (e.g., ``en_US.UTF-8``)
+   locale (if ``en_US.UTF-8`` isn't available on your computer).
 #. To make Persephone-ELAN available to ELAN, move your Persephone-ELAN directory
    into ELAN's ``extensions`` directory.  This directory is found in different
    places under different operating systems:
@@ -89,7 +89,7 @@ If referring to this code in a publication, please consider using the following
 citation:
 
     Cox, Christopher. 2019. Persephone-ELAN: Automatic phoneme recognition for
-    ELAN users. Version 0.1.0.
+    ELAN users. Version 0.1.1.
 
 ::
 
@@ -97,5 +97,5 @@ citation:
     title = {Persephone-ELAN: Automatic phoneme recognition for ELAN users},
     author = {Christopher Cox},
     year = {2019}
-    note = {Version 0.1.0},
+    note = {Version 0.1.1},
     }
