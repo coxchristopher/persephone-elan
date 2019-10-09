@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Anything outside of the RECOGNIZER element can be left untouched -->
+<CMD CMDVersion="1.1" xmlns="http://www.clarin.eu/cmd/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.clarin.eu/cmd/ http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1430905751617/xsd">
+    <!-- See http://catalog.clarin.eu/ds/ComponentRegistry?registrySpace=published&itemId=clarin.eu:cr1:p_1430905751617 -->
+    <Header></Header>
+    <Resources>
+        <ResourceProxyList></ResourceProxyList>
+        <JournalFileProxyList></JournalFileProxyList>
+        <ResourceRelationList></ResourceRelationList>
+    </Resources>
+    <Components>
+        <RECOGNIZER>
+            <!--
+            For Recognizer API extensions the regonizerType is "direct", for stand-alone components running on the same
+            computer the type should be "local". That are currently the types supported by ELAN.
+            For "direct" the "run" attributes (runMac etc.) should have the value of the fully qualified name of the 
+            class implementing "Recognizer.java". For "local" the executable command per platform should be the value.
+            The "info" element contains the name as it will be shown in the user interface. Try to define a name
+            that makes it likely to be unique, e.g by including an institution or university acronym.
+            -->
+            <recognizer recognizerType="local" runLinux="./persephone-elan.sh" runMac="./persephone-elan.sh" runWin=""
+                info="Persephone Phoneme Recognizer">Persephone_Phoneme_Recognizer</recognizer>
+
+            <!-- For a more detailed documentation, a HTML file linked to the recognizer. This HTML ships with the 
+                 recognizer and gives extra explanations for using the recognizer and information about licenses, 
+                 authors and contacting them, version numbers etc. The link can be either a relative link to a file
+                 in the same directory tree as the CMDI file or (not recommended) a direct http link to a recognizer 
+                 homepage elsewhere. 
+            -->
+            <documentation>persephone-elan.html</documentation>
+
+            <!--
+            Any number of input and output parameters can be specified.
+            At least one input element (of type audio, video or timeseries) should be specified.
+            Other input and output types (tier, timeseries etc.) and their required formats are described 
+            in the interfacing specification at https://tla.mpi.nl/projects_info/auvis/#more-7066 and 
+            https://tla.mpi.nl/projects_info/avatech/
+            (https://tla.mpi.nl/wp-content/uploads/2012/08/Avatech-interface-spec-2014-03-06.pdf)
+            -->
+            <input level="basic" type="audio" optional="false"
+                mimetypes="audio/x-wav"
+                info="Input audio file (WAV)">source</input>
+
+    		<input level="basic" type="tier" optional="false"
+                mimetypes="text/plain"
+                info="Input tier to process">input_tier</input>
+
+    		<input level="basic" type="auxiliary" optional="false" 
+                info="Persephone corpus directory">corpus_dir</input>
+
+    		<input level="basic" type="auxiliary" optional="false" 
+                info="Persephone source experiment directory">exp_dir</input>
+
+            <textparam level="basic" 
+                convoc="fbank fbank_and_pitch pitch mfcc13_d" default="fbank"
+                info="Feature type used in Persephone source experiment">feat_type</textparam>
+
+            <textparam level="basic" default="phonemes_tones_separate"
+                info="Label type used in Persephone source experiment">label_type</textparam>
+
+            <textparam level="basic" 
+                convoc="Tsuut'ina Sauk-Separate Sauk-Circumflex none" default="Tsuut'ina"
+                info="Convert Persephone phoneme strings into this orthography">orthography</textparam>
+
+            <output level="basic" type="tier" optional="false"
+                mimetypes="text/xml"
+                info="Output recognized text">output_tier</output>
+        </RECOGNIZER>
+    </Components>
+</CMD>
