@@ -13,14 +13,17 @@ ELAN's user interface.
 Citation
 ========
 
-Cox, Christopher. 2019. Persephone-ELAN: Automatic phoneme recognition for
-ELAN users. Version 0.1.0.
+If referring to this code in a publication, please consider using the following
+citation:
+
+    Cox, Christopher. 2019. Persephone-ELAN: Automatic phoneme recognition for
+    ELAN users. Version 0.1.0.
 
 ::
 
-@Manual{cox19persephoneelan,
+    @manual{cox19persephoneelan,
     title = {Persephone-ELAN: Automatic phoneme recognition for ELAN users},
     author = {Christopher Cox},
     year = {2019}
     note = {Version 0.1.0},
-}
+    }
