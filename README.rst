@@ -32,8 +32,8 @@ Python packages:
 Once all of these tools and packages have been installed, Persephone-ELAN can
 be made available to ELAN as follows:
 
-#. Save a copy of all of the files in this repository into a single directory
-   (e.g., ``Persephone-ELAN``)
+#. Save a copy of all of the files in the `latest release <https://github.com/coxchristopher/persephone-elan/releases/tag/v0.1.0>`_
+   of this repository in a single directory (e.g., ``Persephone-ELAN``)
 #. Edit the file ``persephone-elan.sh`` to specify (a) the absolute path of
    the Python 3 binary that Persephone-ELAN should use, (b) the directory
    in which ffmpeg is located, and (c) a Unicode-friendly language and
