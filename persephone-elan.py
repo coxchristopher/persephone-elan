@@ -178,7 +178,7 @@ with open(os.path.join(params['exp_dir'], 'model_description.txt'), 'r', \
 # With those parameters in hand, grab the 'input_tier' parameter, open that
 # XML document, and read in all of the annotation start times, end times,
 # and values.
-print("PROGRESS: 0.1 Loading annotations on input tier")
+print("PROGRESS: 0.1 Loading annotations on input tier", flush = True)
 with open(params['input_tier'], 'r', encoding = 'utf-8') as input_tier:
     for line in input_tier:
         match = re.search(r'<span start="(.*?)" end="(.*?)"><v>(.*?)</v>', line)
@@ -192,7 +192,7 @@ with open(params['input_tier'], 'r', encoding = 'utf-8') as input_tier:
 # Then use ffmpeg(1) to convert the 'source' audio file into a temporary 16-bit
 # mono 16KHz WAV, then load that temp file into pydub for easier exporting of
 # audio clips in the format that Persephone expects. 
-print("PROGRESS: 0.2 Converting source audio")
+print("PROGRESS: 0.2 Converting source audio", flush = True)
 converted_audio_file = tempfile.NamedTemporaryFile(suffix = '.wav')
 subprocess.call([ffmpeg, '-y', '-v', '0', \
     '-i', params['source'], \
@@ -223,7 +223,7 @@ if not os.path.exists(untranscribed_dir):
 #  copies in 'wav' at least until we've reloaded the corpus -- Persephone
 #  won't recognize them as untranscribed unless they're in both 'wav' *and*
 #  'feat/untranscribed'), but that's not  hard to do.
-print("PROGRESS: 0.3 Creating temporary clips")
+print("PROGRESS: 0.3 Creating temporary clips", flush = True)
 prefix_to_annotation = {}
 with open(os.path.join(params['corpus_dir'], 'untranscribed_prefixes.txt'), \
           'w', encoding = 'utf-8') as untranscribed_prefixes:
@@ -261,13 +261,14 @@ converted_audio_file.close()
 # Having these features in place before loading the corpus convinces
 # Persephone that it doesn't need to reprocess the entire corpus, lowering
 # the overall time required for transcription.
-print("PROGRESS: 0.4 Extracting features from clips")
+print("PROGRESS: 0.4 Extracting features from clips", flush = True)
 persephone.preprocess.feat_extract.from_dir(untranscribed_dir, \
     params['feat_type'])
 
 # If needed, make symlinks to both the clip *and* the corresponding input
 # feature ('.npy') in the 'feat' directory, as well.
-print("PROGRESS: 0.5 Creating temporary symlinks to clips and features")
+print("PROGRESS: 0.5 Creating temporary symlinks to clips and features", \
+      flush = True)
 for annotation in annotations:
     annotation['feat_symlink'] = os.path.join(params['corpus_dir'], \
         'feat', annotation['clip_name'])
@@ -284,7 +285,7 @@ for annotation in annotations:
 # Persephone to find them and an 'untranscribed_prefixes.txt' file is in place,
 # load the corpus.  Persephone should now find all of these files and know to
 # treat them as untranscribed segments.
-print("PROGRESS: 0.6 Loading corpus into Persephone")
+print("PROGRESS: 0.6 Loading corpus into Persephone", flush = True)
 corp = persephone.corpus.Corpus(feat_type = params['feat_type'], \
     label_type = params['label_type'], tgt_dir = params['corpus_dir'])
 
@@ -292,11 +293,11 @@ corp = persephone.corpus.Corpus(feat_type = params['feat_type'], \
 # then use it to start transcribing the clips created above (ideally reporting
 # our progress via messages on stdout, though that doesn't look to be possible
 # here with the current API.  Sigh...)
-print("PROGRESS: 0.7 Creating temporary experiment directory")
+print("PROGRESS: 0.7 Creating temporary experiment directory", flush = True)
 temp_dir = tempfile.TemporaryDirectory()
 new_experiment_dir = persephone.experiment.prep_exp_dir(temp_dir.name)
 
-print("PROGRESS: 0.8 Creating Persephone model")
+print("PROGRESS: 0.8 Creating Persephone model", flush = True)
 corp_reader = persephone.corpus_reader.CorpusReader(corp, \
     num_train = model_parameters['num_train'], \
     batch_size = model_parameters['batch_size'])
@@ -307,7 +308,7 @@ model = persephone.rnn_ctc.Model(new_experiment_dir, corp_reader, \
 
 # 'exp_dir' (e.g., '5') - experiment dir of trained model to apply
 # /Users/chris/Desktop/CURRENT-PROJECTS/Persephone/persephone-tutorial/exp/5
-print("PROGRESS: 0.9 Transcribing clips")
+print("PROGRESS: 0.9 Transcribing clips", flush = True)
 model.transcribe(os.path.join(params['exp_dir'], 'model', 'model_best.ckpt'))
 
 # Now that transcription is finished, we can open 'EXPERIMENT_DIR/
@@ -337,7 +338,7 @@ with open(os.path.join(new_experiment_dir, 'transcriptions', 'hyps.txt'), \
 # Then open 'output_tier' for writing, and return all of the new phoneme
 # strings produced by Persephone as the contents of <span> elements (see
 # below).
-print("PROGRESS: 0.95 Preparing output tier")
+print("PROGRESS: 0.95 Preparing output tier", flush = True)
 with open(params['output_tier'], 'w', encoding = 'utf-8') as output_tier:
     # Write document header.
     output_tier.write('<?xml version="1.0" encoding="UTF-8"?>\n')
@@ -362,4 +363,4 @@ with open(params['output_tier'], 'w', encoding = 'utf-8') as output_tier:
     output_tier.write('</TIER>\n')
 
 # Finally, tell ELAN that we're done.
-print('RESULT: DONE.')
+print('RESULT: DONE.', flush = True)
