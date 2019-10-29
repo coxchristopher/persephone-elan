@@ -1,4 +1,4 @@
-Persephone-ELAN v0.1.1
+Persephone-ELAN v0.1.2
 ======================
 
 Persephone-ELAN integrates the automatic phoneme recognition methods offered by
@@ -15,8 +15,8 @@ Requirements and installation
 Persephone-ELAN makes use of several of other open-source applications and
 utilities:
 
-* `ELAN <https://tla.mpi.nl/tools/tla-tools/elan/>`_ (tested with v5.6-AVFX
-  and v5.7-AVFX under macOS 10.13 and 10.14)
+* `ELAN <https://tla.mpi.nl/tools/tla-tools/elan/>`_ (tested with v5.6-AVFX,
+  v5.7-AVFX, and v5.8 under macOS 10.13 and 10.14)
 * `Python 3 <https://www.python.org/>`_ (tested with Python 3.6)
 * `ffmpeg <https://ffmpeg.org>`_
 
@@ -32,7 +32,7 @@ Python packages:
 Once all of these tools and packages have been installed, Persephone-ELAN can
 be made available to ELAN as follows:
 
-#. Save a copy of all of the files in the `latest release <https://github.com/coxchristopher/persephone-elan/releases/tag/v0.1.1>`_
+#. Save a copy of all of the files in the `latest release <https://github.com/coxchristopher/persephone-elan/releases/tag/v0.1.2>`_
    of this repository in a single directory (e.g., ``Persephone-ELAN``).
 #. Edit the file ``persephone-elan.sh`` to specify (a) the absolute path of
    the Python 3 binary that Persephone-ELAN should use, (b) the directory
@@ -42,11 +42,11 @@ be made available to ELAN as follows:
    into ELAN's ``extensions`` directory.  This directory is found in different
    places under different operating systems:
    
-   * Under macOS, right-click on ``ELAN_5.7-AVFX`` in your ``/Applications``
+   * Under macOS, right-click on ``ELAN_5.8`` in your ``/Applications``
      folder and select "Show Package Contents", then copy your ``Persephone-ELAN``
-     folder into ``ELAN_5-7-AVFX.app/Contents/Java/extensions``.
-   * Under Linux, copy your ``Persephone-ELAN`` folder into ``ELAN_5-7-FX/app/extensions``.
-   * Under Windows, copy your ``Persephone-ELAN`` folder into ``C:\Users\AppData\Local\ELAN_5-7-FX\app\extensions``.
+     folder into ``ELAN_5-8.app/Contents/Java/extensions``.
+   * Under Linux, copy your ``Persephone-ELAN`` folder into ``ELAN_5-8/app/extensions``.
+   * Under Windows, copy your ``Persephone-ELAN`` folder into ``C:\Users\AppData\Local\ELAN_5-8\app\extensions``.
 
 Once ELAN is restarted, it will now include 'Persephone Phoneme Recognizer' in
 the list of Recognizers found under the 'Recognizer' tab in Annotation Mode.
@@ -89,7 +89,7 @@ If referring to this code in a publication, please consider using the following
 citation:
 
     Cox, Christopher. 2019. Persephone-ELAN: Automatic phoneme recognition for
-    ELAN users. Version 0.1.1.
+    ELAN users. Version 0.1.2.
 
 ::
 
@@ -97,5 +97,5 @@ citation:
     title = {Persephone-ELAN: Automatic phoneme recognition for ELAN users},
     author = {Christopher Cox},
     year = {2019}
-    note = {Version 0.1.1},
+    note = {Version 0.1.2},
     }
