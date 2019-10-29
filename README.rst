@@ -17,15 +17,15 @@ utilities:
 
 * `ELAN <https://tla.mpi.nl/tools/tla-tools/elan/>`_ (tested with v5.6-AVFX,
   v5.7-AVFX, and v5.8 under macOS 10.13 and 10.14)
-* `Python 3 <https://www.python.org/>`_ (tested with Python 3.6)
+* `Python 3 <https://www.python.org/>`_ (tested with Python 3.6 and 3.7)
 * `ffmpeg <https://ffmpeg.org>`_
 
 Persephone-ELAN is written in Python 3, and also depends on the following
 Python packages:
 
 * `Persephone <https://github.com/persephone-tools/persephone>`_, installed
-  system-wide (currently tested with Persephone 0.3.2 under Python 3.6) and
-  all of its dependencies
+  system-wide (currently tested with Persephone 0.3.2 and 0.4.0 under Python
+  3.6 and 3.7) and all of its dependencies
 * `pydub <https://github.com/jiaaro/pydub>`_, installed system-wide (tested
   with v0.20.0)
   
@@ -70,8 +70,8 @@ Limitations
 -----------
 
 This is an alpha release of Persephone-ELAN, and has only been tested under macOS
-(10.13, 10.14) with Python 3.6 and Persephone 0.3.2.  No support for Windows is
-included in this version.
+(10.13, 10.14) with Python 3 (3.6, 3.7) and Persephone (0.3.2, 0.4.0).  No support
+for Windows is included in this version.
 
 Acknowledgements
 ----------------
